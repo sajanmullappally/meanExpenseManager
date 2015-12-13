@@ -1,0 +1,24 @@
+{
+  "name": "expensemanager",
+  "version": "1.0.0",
+  "description": "Expense Manager App using MongoDB, Express, Angular & Node",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sajanmullappally/meanExpenseManager.git"
+  },
+  "author": "Sajan Mullappally",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/sajanmullappally/meanExpenseManager/issues"
+  },
+  "homepage": "https://github.com/sajanmullappally/meanExpenseManager#readme",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "mongoose": "^4.3.1"
+  }
+}
