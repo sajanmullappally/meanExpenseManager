@@ -1,3 +1,4 @@
+// load module
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
