@@ -1,0 +1,27 @@
+{
+  "name": "expensemanager",
+  "description": "Expense Manager App using MongoDB, Express, Angular & Node",
+  "main": "app.js",
+  "authors": [
+    "Sajan Mullappally"
+  ],
+  "license": "CC0-1.0",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/assets",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.6",
+    "angular": "~1.4.8",
+    "angular-route": "~1.4.8",
+    "angular-resource": "~1.4.8"
+  }
+}
