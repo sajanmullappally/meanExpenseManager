@@ -4,7 +4,6 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var compass = require('node-compass');
 
 // database connection =======================================================
 
@@ -20,14 +19,10 @@ app.use(bodyParser.urlencoded({
 
 // set root ==================================================================
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static('public'));
 
 // configure node-compass ====================================================
 
-var env = process.env.NODE_ENV || 'compass';
-if ('compass' == env) {
-  app.use(compass());
-}
 
 // start app =================================================================
 
