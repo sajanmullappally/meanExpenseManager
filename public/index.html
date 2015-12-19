@@ -4,17 +4,34 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Expense Manager App using [MongoDB, Express, Angular and Node]</title>
-	<link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/stylesheets/style.css">
+	<link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<div class="container-fluid">
-		<div class="row">
-			Test
+	<div class="page" data-ng-app="expenseManager">
+		<div class="sidebar split split-horizontal" data-ng-controller="SidebarController">
+			<ul class="nav nav-pills nav-stacked">
+				<li role="presentation" data-ng-class="{ active: isActive('/')}"><a href="#/">Dashboard</a></li>
+				<li role="presentation" data-ng-class="{ active: isActive('/AccountManager')}"><a href="#/AccountManager">Account Manager</a></li>
+				<li role="presentation" data-ng-class="{ active: isActive('/ExpenseManager')}"><a href="#/ExpenseManager">Expense Manager</a></li>
+			</ul>
+		</div>
+		<div class="page-content split split-horizontal">
+			<div data-ng-view></div>
 		</div>
 	</div>
-	<script src="assets/jquery/dist/jquery.min.js"></script>
-	<script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="assets/Split.js/split.min.js"></script>
+	<script src="components/jquery/dist/jquery.min.js"></script>
+	<script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="components/Split.js/split.min.js"></script>
+	<script src="components/angular/angular.min.js"></script>
+	<script src="components/angular-route/angular-route.min.js"></script>
+	<script src="js/app-ui.js"></script>
+
+	<!-- Angular App -->
+	<script src="app/expense-manager.js"></script>
+	<script src="app/controllers/dashboard-controller.js"></script>
+	<script src="app/controllers/account-manager-controller.js"></script>
+	<script src="app/controllers/expense-manager-controller.js"></script>
+	<!-- Angular App -->
 </body>
 </html>

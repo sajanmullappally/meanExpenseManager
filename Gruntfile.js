@@ -26,8 +26,8 @@ module.exports = function(grunt) {
     compass: {
       dist: {
         options: {
-          sassDir: 'public/assets/stylesheets',
-          cssDir: 'public/assets/stylesheets',
+          sassDir: 'public/css',
+          cssDir: 'public/css',
           environment: 'production'
         }
       }

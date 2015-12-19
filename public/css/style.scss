@@ -1,0 +1,78 @@
+@import 'compass';
+
+$sidebar-bg: #263238;
+$nav-active-bg: #eee;
+$nav-active-color: #263238;
+$nav-color: #fff;
+$nav-hover-bg: #37474F;
+
+.page {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	.sidebar {
+		@include display-flex;
+		@include align-items(center);
+		background-color: $sidebar-bg;
+		.nav-stacked {
+			width: 100%;
+			li {
+				margin: 0;
+				a {
+					@include border-radius(0);
+					text-align: right;
+					color: $nav-color;
+				}
+				&.active {
+					a {
+						background-color: $nav-active-bg;
+						color: $nav-active-color;
+					}
+					&:hover {
+						a {
+							background-color: $nav-active-bg;
+						}
+					}
+				}
+				&:hover {
+					a {
+						background-color: $nav-hover-bg;
+					}
+				}
+			}
+		}
+	}
+}
+
+.split {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.gutter {
+	background-color: #eee;
+	background-repeat: no-repeat;
+	background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+	background-image: url('../components/Split.js/grips/vertical.png');
+	cursor: ew-resize;
+}
+
+.gutter.gutter-vertical {
+	background-image: url('../components/Split.js/grips/horizontal.png');
+	cursor: ns-resize;
+}
+
+.split.split-horizontal, .gutter.gutter-horizontal {
+	height: 100%;
+	float: left;
+}
