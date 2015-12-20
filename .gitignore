@@ -27,7 +27,7 @@ build/Release
 node_modules
 
 # Bower Components
-public/assets
+public/components
 
 # Sass
 .sass-cache
