@@ -5,6 +5,7 @@ $nav-active-bg: #eee;
 $nav-active-color: #263238;
 $nav-color: #fff;
 $nav-hover-bg: #37474F;
+$label-color: #9E9E9E;
 
 .page {
 	position: fixed;
@@ -46,6 +47,13 @@ $nav-hover-bg: #37474F;
 			}
 		}
 	}
+	.page-content {
+		padding: 30px;
+		h1 {
+			margin: 0 0 30px 0;
+			font-weight: 400;
+		}
+	}
 }
 
 .split {
@@ -75,4 +83,23 @@ $nav-hover-bg: #37474F;
 .split.split-horizontal, .gutter.gutter-horizontal {
 	height: 100%;
 	float: left;
+}
+
+// Bootstrap theme overrides
+.form-group {
+	margin-bottom: 20px;
+}
+label {
+	color: $label-color;
+	font-weight: 400;
+}
+.form-control {
+	height: auto;
+	@include box-shadow(none);
+	padding: 8px 15px;
+	font-size: 14px;
+	&:hover, &:focus, &:active {
+		@include box-shadow(none);
+		outline: none;
+	}
 }

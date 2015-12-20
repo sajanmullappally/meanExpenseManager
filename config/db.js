@@ -1,6 +1,5 @@
 // load module
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
 // Build the connection string 
 var dbURI = 'mongodb://localhost/meanExpenseManager';
