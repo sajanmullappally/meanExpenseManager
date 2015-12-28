@@ -33,4 +33,23 @@ router.route('/accounts')
     });
 });
 
+router.route('/accounts/:id')
+.get(function(req, res) {
+    Account.findById(req.params.id, function(err, accounts) {
+        if (err)
+            res.send(err);
+        res.json(accounts);
+    });
+});
+
+router.route('/accounts/delete/:id')
+.delete(function(req, res) {
+    Account.remove({_id: req.params.id}, function(err, accounts) {
+        if (err)
+            res.send(err);
+        res.json(accounts);
+        console.log(req.params.id + "deleted");
+    });
+});
+
 module.exports = router;

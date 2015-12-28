@@ -13,8 +13,26 @@ app.controller('AccountManagerController', ['$scope', '$http', function($scope, 
 	$scope.addAccount = function() {
 		$http.post('/api/new-account', $scope.account).success(function (response) {
 			refresh();
+			$scope.AccountForm.$setPristine(true);
 		});
 	};
+
+	$scope.editAccount = function (id) {
+		console.log(id);
+		$http.get('/api/accounts/' + id).success(function (response) {
+			$scope.account = response;
+			console.log(response)
+		});
+	};
+
+	$scope.deleteAccount = function (id) {
+		$http.delete('/api/accounts/delete/' + id).success(function (response) {
+			refresh()
+		});
+	};
+
+
+
 }]);
 
 // Filter to calculate sum of account balance

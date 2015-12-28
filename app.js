@@ -39,7 +39,7 @@ app.use('/api', accountRoute);
 
 var server = app.listen(8080, function () {
   var port = server.address().port;
-  console.log('Listening at http://localhost:'+port);
+  console.log('Listening at http://127.0.0.1:'+port);
 });
 
 module.exports = app;
