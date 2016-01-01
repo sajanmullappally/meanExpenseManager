@@ -1,10 +1,10 @@
 var app = angular.module('expenseManager');
 
-app.controller('AccountManagerController', ['$scope', '$http', function($scope, $http){
+app.controller('AccountManagerController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
 	function refresh() {
 		$http.get('/api/accounts').success(function (response) {
 			$scope.accounts = response;
-			$scope.account = "";
+			$scope.account = '';
 		});
 	};
 
@@ -17,17 +17,37 @@ app.controller('AccountManagerController', ['$scope', '$http', function($scope, 
 		});
 	};
 
+	$scope.update = false;
+
 	$scope.editAccount = function (id) {
-		console.log(id);
 		$http.get('/api/accounts/' + id).success(function (response) {
 			$scope.account = response;
-			console.log(response)
 		});
+
+		$timeout(function () {
+			$scope.$apply(function () {
+				$scope.update = true;
+			});
+		}, 0);
+
+	};
+
+	$scope.updateAccount = function () {
+		$http.put('/api/accounts/' + $scope.account._id, $scope.account).success(function (response) {
+			refresh();
+			$scope.AccountForm.$setPristine(true);
+		});
+
+		$timeout(function () {
+			$scope.$apply(function () {
+				$scope.update = false;
+			});
+		}, 0);
 	};
 
 	$scope.deleteAccount = function (id) {
-		$http.delete('/api/accounts/delete/' + id).success(function (response) {
-			refresh()
+		$http.delete('/api/accounts/' + id).success(function (response) {
+			refresh();
 		});
 	};
 

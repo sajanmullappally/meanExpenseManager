@@ -8,7 +8,7 @@ var methodOverride = require('method-override');
 
 // database connection =======================================================
 
-var db = require('./config/db');
+var db = require('./app/config/db');
 
 // parse application/json ====================================================
 
@@ -32,7 +32,7 @@ app.use(express.static('public'));
 
 // Express Routing ===========================================================
 
-var accountRoute = require('./routes/account-routes.js')
+var accountRoute = require('./app/routes/account-routes.js')
 app.use('/api', accountRoute);
 
 // start app =================================================================

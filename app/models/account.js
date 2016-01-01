@@ -2,11 +2,11 @@ var mongoose=require('mongoose');
 var Schema = mongoose.Schema;
 
 var accountSchema = new Schema ({
-	accountName: String,
+	name: String,
 	branch: String,
-	accountNumber: Number,
-	ifscCode: String,
-	accountBalance: Number
+	number: Number,
+	ifsc: String,
+	balance: Number
 });
 
 module.exports = mongoose.model('account', accountSchema);

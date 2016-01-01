@@ -41,7 +41,9 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary">Add Account</button>
+						<button type="submit" class="btn btn-primary" data-ng-hide="update">Add Account</button>
+						<button type="button" class="btn btn-primary" data-ng-show="update" data-ng-click="updateAccount()">Update</button>
+						<button type="reset" class="btn btn-default" data-ng-hide="update">Reset</button>
 					</div>
 				</div>
 			</div>
@@ -52,12 +54,12 @@
 			<table class="table table-hover">
 				<tbody>
 					<tr data-ng-repeat="account in accounts">
-						<td>{{account.accountName}}</td>
+						<td>{{account.name}}</td>
 						<td>{{account.branch}}</td>
-						<td>{{account.accountNumber}}</td>
-						<td>{{account.ifscCode}}</td>
-						<td>{{account.accountBalance}}</td>
-						<td><button type="button" class="btn btn-warning btn-sm" data-ng-click="editAccount(account._id)">Edit</button></td>
+						<td>{{account.number}}</td>
+						<td>{{account.ifsc}}</td>
+						<td>{{account.balance}}</td>
+						<td><button type="button" class="btn btn-warning btn-sm" data-ng-click="editAccount(account._id);">Edit</button></td>
 						<td><button type="button" class="btn btn-danger btn-sm" data-ng-click="deleteAccount(account._id)">Del</button></td>
 					</tr>
 				</tbody>
@@ -66,7 +68,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<h2 class="text-right">Total: {{accounts|sumByKey:'accountBalance'}}</h2>
+			<h2 class="text-right">Total: {{accounts|sumByKey:'balance'}}</h2>
 		</div>
 	</div>
 </section>
