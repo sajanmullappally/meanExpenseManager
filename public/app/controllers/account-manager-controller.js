@@ -1,11 +1,17 @@
 var app = angular.module('expenseManager');
 
-app.controller('AccountManagerController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
+app.controller('AccountManagerController', ['$scope', '$http', '$timeout', 'Accounts', function($scope, $http, $timeout, Accounts){
+	
+	$scope.accounts = [];
+	$scope.account = {};
+
 	function refresh() {
-		$http.get('/api/accounts').success(function (response) {
+
+		Accounts.getAccounts().success(function(response) {
 			$scope.accounts = response;
 			$scope.account = '';
 		});
+
 	};
 
 	refresh();

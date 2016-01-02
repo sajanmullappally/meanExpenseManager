@@ -2,6 +2,38 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<h1>Expense Manager</h1>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Select Account</label>
+						<select class="form-control" required="required" data-ng-options="account as account.name for account in accounts track by account._id" data-ng-model="selectedAccount">
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<label>Account Balance for {{selectedAccount.name}}</label>
+					<h1 class="offset-null">{{selectedAccount.balance}}</h1 class="offset-null">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Title</label>
+						<input type="text" class="form-control" data-ng-model="expense.title">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Amount</label>
+						<input type="text" class="form-control" data-ng-model="expense.amount">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			
 		</div>
 	</div>
 </section>

@@ -3,10 +3,6 @@ var router = express.Router();
 
 var Account = require('../models/account.js');
 
-// router.get('/', function(req, res) {
-//     res.json({ message: 'Express Router' });   
-// });
-
 router.route('/new-account')
 .post(function(req, res) {
 	var account = new Account();
