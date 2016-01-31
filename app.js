@@ -32,8 +32,10 @@ app.use(express.static('public'));
 
 // Express Routing ===========================================================
 
-var accountRoute = require('./app/routes/account-routes.js')
+var accountRoute = require('./app/routes/account-routes.js');
+var expenseRoute = require('./app/routes/expense-routes.js')
 app.use('/api', accountRoute);
+app.use('/api', expenseRoute);
 
 // start app =================================================================
 

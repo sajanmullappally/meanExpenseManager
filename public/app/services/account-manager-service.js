@@ -5,3 +5,9 @@ app.service('Accounts', ['$http', function($http){
 		return $http.get('/api/accounts');
 	};
 }]);
+
+app.service('Expenses', ['$http', function($http){
+	this.getExpenses = function () {
+		return $http.get('/api/expenses');
+	};
+}]);

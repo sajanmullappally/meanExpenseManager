@@ -6,19 +6,36 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label>Select Account</label>
-						<select class="form-control" required="required" data-ng-options="account as account.name for account in accounts track by account._id" data-ng-model="selectedAccount">
+						<select class="form-control" data-ng-options="account as account.name for account in accounts track by account._id" data-ng-model="expense.selectedAccount">
+							<option value="">Select Account</option>
 						</select>
 					</div>
 				</div>
 				<div class="col-md-6">
-					<label>Account Balance for {{selectedAccount.name}}</label>
-					<h1 class="offset-null">{{selectedAccount.balance}}</h1 class="offset-null">
+					<label>Account Balance for {{expense.selectedAccount.name}}</label>
+					<h1 class="offset-null">{{expense.selectedAccount.balance}}</h1 class="offset-null">
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label>Title</label>
+						<label>Date</label>
+						<input type="text" class="form-control" data-ng-model="expense.date">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Transaction Type</label>
+						<select class="form-control" data-ng-options="expense as expense.name for expense in expenseTypes" data-ng-model="expense.selectedExpenseType">
+						<option value="">Select Transaction Type</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Expense Title</label>
 						<input type="text" class="form-control" data-ng-model="expense.title">
 					</div>
 				</div>
@@ -29,11 +46,43 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<button type="button" class="btn btn-primary" data-ng-click="addExpense()">Add Expense</button>
+					<input type="hidden" data-ng-model="expense.new_balance=expense.selectedAccount.balance-expense.amount">
+				</div>
+			</div>
 		</div>
 	</div>
+	<div class="spacer-md"></div>
 	<div class="row">
 		<div class="col-md-12">
-			
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Title</th>
+						<th>Account</th>
+						<th>Transaction Type</th>
+						<th>Amount</th>
+						<th>Old Balance</th>
+						<th>New Balance</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="expense in expenses">
+						<td>{{expense.date}}</td>
+						<td>{{expense.title}}</td>
+						<td>{{expense.account}}</td>
+						<td>{{expense.type}}</td>
+						<td>{{expense.amount}}</td>
+						<td>{{expense.old_balance}}</td>
+						<td>{{expense.new_balance}}</td>
+						<td><button type="button" class="btn btn-warning btn-sm">Edit</button></td>
+						<td><button type="button" class="btn btn-danger btn-sm">Del</button></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </section>
