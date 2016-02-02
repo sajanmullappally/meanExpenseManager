@@ -49,7 +49,10 @@
 			<div class="row">
 				<div class="col-md-12">
 					<button type="button" class="btn btn-primary" data-ng-click="addExpense()">Add Expense</button>
-					<input type="hidden" data-ng-model="expense.new_balance=expense.selectedAccount.balance-expense.amount">
+					<div ng-switch="expense.selectedExpenseType.name">
+						<input type="hidden" ng-switch-when="Credit" data-ng-model="expense.new_balance=+expense.selectedAccount.balance++expense.amount">
+						<input type="hidden" ng-switch-when="Debit" data-ng-model="expense.new_balance=expense.selectedAccount.balance-expense.amount">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -70,12 +73,18 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr data-ng-repeat="expense in expenses">
+					<tr data-ng-repeat="expense in expenses | orderBy:'-_id'">
 						<td>{{expense.date}}</td>
 						<td>{{expense.title}}</td>
 						<td>{{expense.account}}</td>
 						<td>{{expense.type}}</td>
-						<td>{{expense.amount}}</td>
+						<td>
+							<span ng-switch="expense.type">
+								<span ng-switch-when="Credit">+</span>
+								<span ng-switch-when="Debit">-</span>
+							</span>
+							{{expense.amount}}
+						</td>
 						<td>{{expense.old_balance}}</td>
 						<td>{{expense.new_balance}}</td>
 						<td><button type="button" class="btn btn-warning btn-sm">Edit</button></td>
