@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var Expense = require('../models/expense.js');
+var Account = require('../models/account.js');
 
 router.route('/new-expense')
 .post(function(req, res) {
@@ -17,8 +18,19 @@ router.route('/new-expense')
 		if (err)
 			res.send(err);
 
-		console.log(req.body);
 		res.json(docs);
+	});
+
+	// Expense.findOne({ _id: req.body.selectedAccount})
+	// .populate('account')
+	// .exec(function (err, story) {
+	// 	if (err) return handleError(err);
+	// 	console.log(story.name);
+	// });
+
+	Account.findOne({ _id: req.body.selectedAccount._id }, function (err, account){
+		account.balance = req.body.new_balance;
+		account.save();
 	});
 });
 
@@ -29,6 +41,17 @@ router.route('/expenses')
         if (err)
             res.send(err);
 
+        res.json(expenses);
+    })
+    .populate('account', 'name');
+});
+
+// Delete Expense
+router.route('/expenses/:id')
+.delete(function(req, res) {
+    Expense.remove({_id: req.params.id}, function(err, expenses) {
+        if (err)
+            res.send(err);
         res.json(expenses);
     });
 });

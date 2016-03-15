@@ -1,4 +1,4 @@
-var app = angular.module('expenseManager', ['ngRoute', 'jcs-autoValidate']);
+var app = angular.module('expenseManager', ['ngRoute', 'jcs-autoValidate', 'ngMaterial']);
 
 app.config(function($routeProvider) {
 	$routeProvider

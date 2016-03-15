@@ -49,15 +49,27 @@
 			<div class="row">
 				<div class="col-md-12">
 					<button type="button" class="btn btn-primary" data-ng-click="addExpense()">Add Expense</button>
-					<div ng-switch="expense.selectedExpenseType.name">
-						<input type="hidden" ng-switch-when="Credit" data-ng-model="expense.new_balance=+expense.selectedAccount.balance++expense.amount">
-						<input type="hidden" ng-switch-when="Debit" data-ng-model="expense.new_balance=expense.selectedAccount.balance-expense.amount">
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="spacer-md"></div>
+<!-- 	<div class="row">
+		<div class="col-md-12">
+			<table class="table table-hover">
+				<tbody>
+					<tr data-ng-repeat="account in accounts | orderBy:'-_id'">
+						<td>{{account.name}}</td>
+						<td>{{account.branch}}</td>
+						<td>{{account.number}}</td>
+						<td>{{account.ifsc}}</td>
+						<td>{{account.balance}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div> -->
+	<div class="spacer-md"></div>	
 	<div class="row">
 		<div class="col-md-12">
 			<table class="table table-hover">
@@ -70,13 +82,14 @@
 						<th>Amount</th>
 						<th>Old Balance</th>
 						<th>New Balance</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr data-ng-repeat="expense in expenses | orderBy:'-_id'">
 						<td>{{expense.date}}</td>
 						<td>{{expense.title}}</td>
-						<td>{{expense.account}}</td>
+						<td>{{expense.account.name}}</td>
 						<td>{{expense.type}}</td>
 						<td>
 							<span ng-switch="expense.type">
@@ -87,8 +100,7 @@
 						</td>
 						<td>{{expense.old_balance}}</td>
 						<td>{{expense.new_balance}}</td>
-						<td><button type="button" class="btn btn-warning btn-sm">Edit</button></td>
-						<td><button type="button" class="btn btn-danger btn-sm">Del</button></td>
+						<td><button type="button" class="btn btn-danger btn-sm" data-ng-click="deleteExpense(expense._id)">Del</button></td>
 					</tr>
 				</tbody>
 			</table>

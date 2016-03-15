@@ -1,7 +1,43 @@
-<section class="partial dashboard" data-ng-controller="AccountManagerController">
+<section class="partial dashboard" data-ng-controller="AccountManagerController" layout="column" ng-cloak class="md-inline-form">
+	<md-content layout-padding>
+		<h1 class="md-title">Account Manager</h1>
+		<form name="AccountForm">
+			<div layout-gt-sm="row">
+				<md-input-container class="md-block" flex-gt-sm>
+					<label>Account Name</label>
+					<input data-ng-model="account.name" required="required">
+				</md-input-container>
+				<md-input-container class="md-block" flex-gt-sm>
+					<label>Branch</label>
+					<input data-ng-model="account.branch">
+				</md-input-container>
+			</div>
+			<div layout-gt-sm="row">
+				<md-input-container class="md-block" flex-gt-sm>
+					<label>Account Number</label>
+					<input data-ng-model="account.number">
+				</md-input-container>
+				<md-input-container class="md-block" flex-gt-sm>
+					<label>IFSC Code</label>
+					<input data-ng-model="account.ifsc">
+				</md-input-container>
+			</div>
+			<div layout-gt-sm="row">
+				<md-input-container class="md-block" flex-gt-sm>
+					<label>Account Balance</label>
+					<input data-ng-model="account.balance" required="required">
+				</md-input-container>
+			</div>
+			<div layout-gt-sm="row">
+				<md-button class="md-raised md-primary" data-ng-hide="update" data-ng-click="addAccount()">Add Account</md-button>
+				<md-button class="md-raised md-primary" data-ng-show="update" data-ng-click="updateAccount()">Update</md-button>
+				<md-button class="md-raised" data-ng-hide="update">Reset</md-button>
+			</div>
+		</form>
+	</md-content>
 	<form class="row" name="AccountForm" novalidate="novalidate" ng-submit="addAccount()">
 		<div class="col-md-12">
-			<h1>Account Manager</h1>
+			<!-- <h1>Account Manager</h1> -->
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">

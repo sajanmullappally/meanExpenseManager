@@ -1,5 +1,5 @@
 {
-  "name": "expensemanager",
+  "name": "Mean Expense Manager",
   "description": "Expense Manager App using MongoDB, Express, Angular & Node",
   "main": "app.js",
   "authors": [
@@ -15,15 +15,22 @@
     "bower_components",
     "public/assets",
     "test",
-    "tests"
+    "tests",
+    "public/components"
   ],
   "dependencies": {
     "jquery": "~2.1.4",
     "bootstrap": "~3.3.6",
-    "angular": "~1.4.8",
-    "angular-route": "~1.4.8",
-    "angular-resource": "~1.4.8",
+    "angular": "1.5.0",
+    "angular-route": "1.5.0",
+    "angular-resource": "1.5.0",
     "Split.js": "~1.0.6",
-    "angular-auto-validate": "~1.19.3"
+    "angular-auto-validate": "~1.19.3",
+    "angular-animate": "1.5.0",
+    "angular-aria": "1.5.0",
+    "angular-material": "1.0.5"
+  },
+  "resolutions": {
+    "angular": "1.5.0"
   }
 }

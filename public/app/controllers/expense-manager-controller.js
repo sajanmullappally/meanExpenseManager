@@ -1,27 +1,17 @@
 var app = angular.module('expenseManager');
 
-app.controller('ExpenseManagerController', ['$scope', '$http', '$timeout', 'Accounts', 'Expenses', function($scope, $http, $timeout, Accounts, Expenses){
+app.controller('ExpenseManagerController', ['$scope', '$http', '$timeout', '$location', 'Accounts', 'Expenses', function($scope, $http, $timeout, $location, Accounts, Expenses){
 
 	$scope.accounts = [];
 
 	Accounts.getAccounts().success(function(response) {
 		$scope.accounts = response;
-		// $scope.expense.selectedAccount = $scope.accounts[0];
 	});
 
 	$scope.expenseTypes = [
 		{"name": "Debit"},
 		{"name": "Credit"}
 	];
-
-	$scope.addExpense = function () {
-		$http.post('/api/new-expense', $scope.expense).success(function (response) {
-			console.log(response);
-			$scope.expense = '';
-			refresh();
-			// $scope.AccountForm.$setPristine(true);
-		});
-	};
 
 	$scope.expenses = [];
 	$scope.expense = {};
@@ -37,5 +27,26 @@ app.controller('ExpenseManagerController', ['$scope', '$http', '$timeout', 'Acco
 	};
 
 	refresh();
+
+	$scope.addExpense = function () {
+		if ($scope.expense.selectedExpenseType.name==="Debit") {
+			$scope.expense.new_balance = parseFloat($scope.expense.selectedAccount.balance) - parseFloat($scope.expense.amount);
+		} else if ($scope.expense.selectedExpenseType.name==="Credit") {
+			$scope.expense.new_balance = parseFloat($scope.expense.selectedAccount.balance) + parseFloat($scope.expense.amount);
+		}
+		$http.post('/api/new-expense', $scope.expense).success(function (response) {
+			console.log(response);
+			$scope.expense = '';
+			refresh();
+			$location.url('/ExpenseManager/');
+			// $scope.AccountForm.$setPristine(true);
+		});
+	};
+
+	$scope.deleteExpense = function(id) {
+		$http.delete('/api/expenses/' + id).success(function (response) {
+			refresh();
+		});
+	};
 
 }]);
