@@ -28,6 +28,8 @@ app.controller('ExpenseManagerController', ['$scope', '$http', '$timeout', '$loc
 
 	refresh();
 
+	$scope.expense.date = new Date();
+
 	$scope.addExpense = function () {
 		if ($scope.expense.selectedExpenseType.name==="Debit") {
 			$scope.expense.new_balance = parseFloat($scope.expense.selectedAccount.balance) - parseFloat($scope.expense.amount);

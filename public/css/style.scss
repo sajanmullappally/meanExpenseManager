@@ -6,6 +6,7 @@ $nav-active-color: #263238;
 $nav-color: #fff;
 $nav-hover-bg: #37474F;
 $label-color: #9E9E9E;
+$page-bg: #f7f7f7;
 
 .page {
 	position: fixed;
@@ -15,6 +16,7 @@ $label-color: #9E9E9E;
 	bottom: 0;
 	width: 100%;
 	height: 100%;
+	// background-color: $page-bg;
 	.sidebar {
 		@include display-flex;
 		@include align-items(center);
@@ -48,12 +50,22 @@ $label-color: #9E9E9E;
 		}
 	}
 	.page-content {
-		padding: 30px;
+		padding: 0;
 		h1 {
 			margin: 0 0 30px 0;
 			font-weight: 400;
 		}
 	}
+}
+
+.h100 {
+	position: relative;
+	height: 100%;
+}
+
+.fa-inr {
+	margin-right: 5px;
+	line-height: normal;
 }
 
 .split {
@@ -125,4 +137,25 @@ label {
 .spacer-lg {
 	height: 50px;
 	clear: both;
+}
+
+md-datepicker {
+	margin: 18px 0;
+	// width: 100%;
+	// padding-right: 0;
+}
+
+.md-datepicker-button {
+	// display: none;
+}
+
+.md-datepicker-input-container {
+	// margin-left: 0;
+	// width: 80%;
+}
+
+.md-datepicker-button {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	padding-left: 0 !important;
 }
