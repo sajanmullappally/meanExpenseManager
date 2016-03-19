@@ -1,4 +1,4 @@
-var app = angular.module('expenseManager', ['ngRoute', 'ngMaterial', 'ngMessages']);
+var app = angular.module('expenseManager', ['ngRoute', 'ngMessages', 'ui.bootstrap.datetimepicker']);
 
 app.config(function($routeProvider) {
 	$routeProvider

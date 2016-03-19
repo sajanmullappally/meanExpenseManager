@@ -1,6 +1,6 @@
 var app = angular.module('expenseManager');
 
-app.controller('AccountManagerController', ['$document', '$scope', '$http', '$timeout', 'Accounts', '$location', '$mdDialog', '$mdToast', function($document, $scope, $http, $timeout, Accounts, $location, $mdDialog, $mdToast){
+app.controller('AccountManagerController', ['$document', '$scope', '$http', '$timeout', 'Accounts', '$location', function($document, $scope, $http, $timeout, Accounts, $location){
     
     $scope.accounts = [];
     $scope.account = {};
@@ -18,36 +18,28 @@ app.controller('AccountManagerController', ['$document', '$scope', '$http', '$ti
 
     $scope.resetAccountForm = function () {
         $scope.account = {};
+        angular.element($document[0].querySelector('input.ng-invalid')).focus();
     };
 
     $scope.update = false;
-    $scope.showAddAccount = false;
+    $scope.AccountForm = false;
 
     $scope.showAccountForm = function() {
-        $scope.account = {};
-        $scope.update = false;
-        $scope.showAddAccount = true;
+        $scope.AccountForm = true;
     };
 
-    $scope.hideAccountForm = function () {
-        $scope.showAddAccount = false;
+    $scope.closeAccountForm = function() {
+        $scope.AccountForm = false;
     };
-
 
     $scope.addAccount = function(isValid) {
         if (isValid) {
             $http.post('/api/new-account', $scope.account).success(function (response) {
                 refresh();
-                $mdToast.show(
-                    $mdToast.simple()
-                    .textContent('Account Added Successfully')
-                    .position('right bottom')
-                    .hideDelay(3000)
-                );
 
                 $timeout(function () {
                     $scope.$apply(function () {
-                        $location.url('/AccountManager/');
+                        $scope.AccountForm = false;
                     });
                 }, 0);
             });
@@ -67,8 +59,8 @@ app.controller('AccountManagerController', ['$document', '$scope', '$http', '$ti
 
         $timeout(function () {
             $scope.$apply(function () {
-                $scope.showAddAccount = true;
                 $scope.update = true;
+                $scope.AccountForm = true;
             });
         }, 0);
 
@@ -77,45 +69,14 @@ app.controller('AccountManagerController', ['$document', '$scope', '$http', '$ti
     $scope.updateAccount = function () {
         $http.put('/api/accounts/' + $scope.account._id, $scope.account).success(function (response) {
             refresh();
-            $mdToast.show(
-                $mdToast.simple()
-                .textContent('Account Updated Successfully')
-                .position('right bottom')
-                .hideDelay(3000)
-            );
         });
 
         $timeout(function () {
             $scope.$apply(function () {
-                $scope.showAddAccount = false;
                 $scope.update = false;
+                $scope.AccountForm = false;
             });
         }, 0);
-    };
-
-
-    $scope.confirmDelete = function(id) {
-        // Appending dialog to document.body to cover sidenav in docs app
-        var confirm = $mdDialog.confirm()
-        .title('Confirm Account Deletion')
-        .textContent('Are you sure you want to delete your account')
-        .ariaLabel('Delete Account')
-        .targetEvent(id)
-        .ok('Delete')
-        .cancel('Cancel');
-        $mdDialog.show(confirm).then(function() {
-            $http.delete('/api/accounts/' + id).success(function (response) {
-                refresh();
-                $mdToast.show(
-                    $mdToast.simple()
-                    .textContent('Account Deleted Successfully')
-                    .position('right bottom')
-                    .hideDelay(3000)
-                );
-            });
-        }, function() {
-            $scope.status = 'Account Deletion Cancelled';
-        });
     };
 
     $scope.deleteAccount = function (id) {

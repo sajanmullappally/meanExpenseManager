@@ -1,163 +1,109 @@
 <section class="partial dashboard h100" data-ng-controller="AccountManagerController" layout="column" ng-cloak class="md-inline-form">
-    <md-content flex layout-padding layout="row" layout-wrap>
-        <div flex="100" layout="row">
-            <h2 class="md-display-1">Account Manager</h2>
+    <div class="fab-btn primary" data-ng-click="showAccountForm()">
+        <i class="ion-plus"></i>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h1>Account Manager</h1>
         </div>
-        <md-button class="md-primary md-fab md-fab-top-right" flex layout="row" layout-align="center center" data-ng-click="showAccountForm()">
-            <i class="material-icons">add</i>
-        </md-button>
-        <div flex="100" data-ng-if="showAddAccount">
-            <md-card>
-                <md-card-content>
-                    <form name="AccountForm" novalidate="novalidate" data-ng-submit="addAccount(AccountForm.$valid)" autocomplete="off">
-                        <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
+    </div>
+    <form class="row" name="AccountForm" novalidate="novalidate" data-ng-submit="addAccount(AccountForm.$valid)" autocomplete="off" data-ng-if="AccountForm">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label>Account Name</label>
-                                <input name="account_name" data-ng-model="account.name" data-ng-required="true">
-                                <div data-ng-messages="AccountForm.account_name.$error" data-ng-show='AccountForm.$submitted || AccountForm.account_name.$dirty'>
+                                <input name="account_name" class="form-control" data-ng-model="account.name" data-ng-required="true">
+                                <div data-ng-messages="AccountForm.account_name.$error" data-ng-if='AccountForm.$submitted || AccountForm.account_name.$dirty' class="validation-msg">
                                     <div data-ng-message="required">Account Name Required</div>
                                 </div>
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label>Branch</label>
-                                <input data-ng-model="account.branch">
-                            </md-input-container>
+                                <input type="text" class="form-control" data-ng-model="account.branch">
+                            </div>
                         </div>
-                        <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label>Account Number</label>
-                                <input data-ng-model="account.number">
-                            </md-input-container>
-                            <md-input-container class="md-block" flex-gt-sm>
-                                <label>IFSC Code</label>
-                                <input data-ng-model="account.ifsc">
-                            </md-input-container>
+                                <input type="text" class="form-control" data-ng-model="account.number">
+                            </div>
                         </div>
-                        <div layout-gt-sm="row">
-                            <md-input-container class="md-block" flex-gt-sm>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>IFSC Code</label>
+                                <input type="text" class="form-control" data-ng-model="account.ifsc">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
                                 <label>Account Balance</label>
-                                <input type="text" minlength="2" name="account_balance" data-ng-model="account.balance" data-ng-pattern="/^[0-9]+$/" data-ng-required="true">
-                                <div data-ng-messages="AccountForm.account_balance.$error" data-ng-show='AccountForm.$submitted || AccountForm.account_balance.$dirty'>
+                                <input type="text" class="form-control" name="account_balance" data-ng-model="account.balance" data-ng-pattern="/^[0-9]+$/" data-ng-required="true">
+                                <div data-ng-messages="AccountForm.account_balance.$error" data-ng-if='AccountForm.$submitted || AccountForm.account_balance.$dirty' class="validation-msg">
                                     <div data-ng-message="required">Please Enter Account Balance</div>
                                     <div data-ng-message="pattern">Account balance cannot be string. Please enter integer</div>
                                 </div>
-                            </md-input-container>
-                        </div>
-                        <div layout="row" layout-align="space-between center">
-                            <div>
-                                <md-button type="submit" md-no-ink class="md-raised md-primary" data-ng-if="!update">Add Account</md-button>
-                                <md-button type="button" md-no-ink class="md-raised md-primary" data-ng-if="update" data-ng-click="updateAccount()">Update</md-button>
-                                <md-button type="button" md-no-ink class="md-raised" data-ng-if="!update" data-ng-click="resetAccountForm()">Reset</md-button>
-                            </div>
-                            <div>
-                                <md-button md-no-ink class="md-raised" data-ng-click="hideAccountForm()">Close</md-button>
                             </div>
                         </div>
-                    </form>
-                </md-card-content>
-            </md-card>
-        </div>
-        <div flex="50" layout="column" data-ng-repeat="account in accounts">
-            <md-card>
-                <md-card-title>
-                    <md-card-title-text layout="row" layout-align="start center">
-                        <div flex="75"><span class="md-headline">{{account.name}}</span></div>
-                        <div flex="25"><span class="md-headline" layout="row" layout-align="end center"><i class="fa fa-inr"></i>{{account.balance}}</span></div>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-content>
-                    <p><strong>Branch:</strong> {{account.branch}}</p>
-                    <p><strong>Account No:</strong> {{account.number}}</p>
-                    <p><strong>IFSC Code:</strong> {{account.ifsc}}</p>
-                </md-card-content>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button data-ng-click="editAccount(account._id);">Edit</md-button>
-                    <!-- <md-button data-ng-click="deleteAccount(account._id)">Delete</md-button> -->
-                    <md-button data-ng-click="confirmDelete(account._id)">Delete</md-button>
-                </md-card-actions>
-            </md-card>
-        </div>
-        <div flex="100" layout="column">
-            <md-card>
-                <md-card-title>
-                    <md-card-title-text layout="row" layout-align="end center">
-                        <span class="md-headline">Total: {{accounts|sumByKey:'balance'}}</span>
-                    </md-card-title-text>
-                </md-card-title>
-            </md-card>
-        </div>
-    </md-content>
-    <!-- <form class="row" name="AccountForm" novalidate="novalidate" ng-submit="addAccount()">
-        <div class="col-md-12">
-            <h1>Account Manager</h1>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Account Name</label>
-                        <input type="text" class="form-control" data-ng-model="account.name" required="required">
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Branch</label>
-                        <input type="text" class="form-control" data-ng-model="account.branch">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Account Number</label>
-                        <input type="text" class="form-control" data-ng-model="account.number">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>IFSC Code</label>
-                        <input type="text" class="form-control" data-ng-model="account.ifsc">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Account Balance</label>
-                        <input type="text" class="form-control" data-ng-model="account.balance" required="required">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" data-ng-hide="update">Add Account</button>
-                        <button type="button" class="btn btn-primary" data-ng-show="update" data-ng-click="updateAccount()">Update</button>
-                        <button type="reset" class="btn btn-default" data-ng-hide="update">Reset</button>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary" data-ng-hide="update">Add Account</button>
+                            <button type="button" class="btn btn-primary" data-ng-show="update" data-ng-click="updateAccount()">Update</button>
+                            <button type="button" class="btn btn-default" data-ng-hide="update" data-ng-click="resetAccountForm()">Reset</button>
+                            <button type="button" class="btn btn-default pull-right" data-ng-hide="update" data-ng-click="closeAccountForm()">Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </form>
     <div class="row">
-        <div class="col-md-12">
-            <table class="table table-hover">
-                <tbody>
-                    <tr data-ng-repeat="account in accounts">
-                        <td>{{account.name}}</td>
-                        <td>{{account.branch}}</td>
-                        <td>{{account.number}}</td>
-                        <td>{{account.ifsc}}</td>
-                        <td>{{account.balance}}</td>
-                        <td><button type="button" class="btn btn-warning btn-sm" data-ng-click="editAccount(account._id);">Edit</button></td>
-                        <td><button type="button" class="btn btn-danger btn-sm" data-ng-click="deleteAccount(account._id)">Del</button></td>
-                    </tr>
-                </tbody>
-            </table>
-            <md-divider ng-if="!$last"></md-divider>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" data-ng-repeat="account in accounts">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{account.name}}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <label>Branch</label>
+                            <p>{{account.branch}}</p>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <label>Account Number</label>
+                            <p>{{account.number}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <label>IFSC Code</label>
+                            <p>{{account.ifsc}}</p>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <label>Account Balance</label>
+                            <p>{{account.balance}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-right">
+                    <span class="ion-compose edit-account-icon" data-ng-click="editAccount(account._id);"></span>
+                    <span class="ion-trash-a del-account-icon offset-left-20" data-ng-click="deleteAccount(account._id)"></span>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <h2 class="text-right">Total: {{accounts|sumByKey:'balance'}}</h2>
         </div>
-    </div> -->
+    </div>
 </section>
