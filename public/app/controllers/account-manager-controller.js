@@ -60,7 +60,7 @@ app.controller('AccountManagerController', ['$document', '$scope', '$http', '$ti
         $timeout(function () {
             $scope.$apply(function () {
                 $scope.update = true;
-                $scope.AccountForm = true;
+                $scope.accountForm = true;
             });
         }, 0);
 
@@ -74,7 +74,7 @@ app.controller('AccountManagerController', ['$document', '$scope', '$http', '$ti
         $timeout(function () {
             $scope.$apply(function () {
                 $scope.update = false;
-                $scope.AccountForm = false;
+                $scope.accountForm = false;
             });
         }, 0);
     };

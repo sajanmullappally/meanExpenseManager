@@ -124,7 +124,7 @@
                                 <td>{{expense.old_balance}}</td>
                                 <td>{{expense.new_balance}}</td>
                                 <td>
-                                    <span class="ion-trash-a del-account-icon" data-ng-click="deleteExpense(expense._id)"></span>
+                                    <span class="ion-trash-a del-account-icon" data-ng-click="deleteExpense(expense._id, expense.account._id, expense.type, expense.old_balance, expense.new_balance)"></span>
                                 </td>
                             </tr>
                         </tbody>
