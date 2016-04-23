@@ -1,4 +1,4 @@
-<section class="partial dashboard" data-ng-controller="ExpenseManagerController">
+<section class="partial dashboard">
     <div class="fab-btn primary" data-ng-click="showExpenseForm()">
         <i class="ion-plus"></i>
     </div>
@@ -7,7 +7,7 @@
             <h1>Expense Manager</h1>
         </div>
     </div>
-    <form class="row" name="ExpenseForm" novalidate="novalidate" data-ng-submit="addExpense()" autocomplete="off" data-ng-if="ExpenseForm">
+    <form class="row" name="ExpenseForm" novalidate="novalidate" data-ng-submit="addExpense(ExpenseForm.$valid)" autocomplete="off" data-ng-show="expenseForm">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -15,9 +15,12 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Select Account</label>
-                                <select class="form-control" data-ng-options="account as account.name for account in accounts track by account._id" data-ng-model="expense.selectedAccount">
+                                <select name="expense_account" class="form-control" data-ng-options="account as account.name for account in accounts track by account._id" data-ng-model="expense.selectedAccount" data-ng-required="true">
                                     <option value="">Select</option>
                                 </select>
+                                <div data-ng-messages="ExpenseForm.expense_account.$error" data-ng-if='ExpenseForm.$submitted || ExpenseForm.expense_account.$dirty' class="validation-msg">
+                                    <div data-ng-message="required">Please select an account</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -32,7 +35,7 @@
                                 <div class="dropdown">
                                     <a class="dropdown-toggle" id="datePicker" role="button" data-toggle="dropdown">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" data-ng-model="expense.date">
+                                            <input name="expense_date" type="text" class="form-control" data-ng-model="expense.date" data-ng-required="true">
                                             <span class="input-group-addon">
                                                 <i class="ion-android-calendar"></i>
                                             </span>
@@ -42,14 +45,20 @@
                                         <datetimepicker data-ng-model="expense.date" data-datetimepicker-config="{ dropdownSelector: '#datePicker', startView:'day', minView:'day' }"/>
                                     </ul>
                                 </div>
+                                <div data-ng-messages="ExpenseForm.expense_date.$error" data-ng-if='ExpenseForm.$submitted || ExpenseForm.expense_date.$dirty' class="validation-msg">
+                                    <div data-ng-message="required">Please select a date</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>&nbsp;</label>
-                                <select class="form-control" data-ng-options="expense as expense.name for expense in expenseTypes" data-ng-model="expense.selectedExpenseType">
+                                <select name="expense_type" class="form-control" data-ng-options="expense as expense.name for expense in expenseTypes" data-ng-model="expense.selectedExpenseType" data-ng-required="true">
                                     <option value="">Select Transaction Type</option>
                                 </select>
+                                <div data-ng-messages="ExpenseForm.expense_type.$error" data-ng-if='ExpenseForm.$submitted || ExpenseForm.expense_type.$dirty' class="validation-msg">
+                                    <div data-ng-message="required">Please select expense type</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -57,13 +66,19 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Expense Title</label>
-                                <input type="text" class="form-control" data-ng-model="expense.title">
+                                <input name="expense_title" type="text" class="form-control" data-ng-model="expense.title" data-ng-required="true">
+                                <div data-ng-messages="ExpenseForm.expense_title.$error" data-ng-if='ExpenseForm.$submitted || ExpenseForm.expense_title.$dirty' class="validation-msg">
+                                    <div data-ng-message="required">Please enter expense title</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Amount</label>
-                                <input type="text" class="form-control" data-ng-model="expense.amount">
+                                <input name="expense_amount" type="text" class="form-control" data-ng-model="expense.amount" data-ng-required="true">
+                                <div data-ng-messages="ExpenseForm.expense_amount.$error" data-ng-if='ExpenseForm.$submitted || ExpenseForm.expense_amount.$dirty' class="validation-msg">
+                                    <div data-ng-message="required">Please enter expense amount</div>
+                                </div>
                             </div>
                         </div>
                     </div>

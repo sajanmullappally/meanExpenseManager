@@ -22,14 +22,14 @@ app.controller('AccountManagerController', ['$document', '$scope', '$http', '$ti
     };
 
     $scope.update = false;
-    $scope.AccountForm = false;
+    $scope.accountForm = false;
 
     $scope.showAccountForm = function() {
-        $scope.AccountForm = true;
+        $scope.accountForm = true;
     };
 
     $scope.closeAccountForm = function() {
-        $scope.AccountForm = false;
+        $scope.accountForm = false;
     };
 
     $scope.addAccount = function(isValid) {
@@ -39,7 +39,7 @@ app.controller('AccountManagerController', ['$document', '$scope', '$http', '$ti
 
                 $timeout(function () {
                     $scope.$apply(function () {
-                        $scope.AccountForm = false;
+                        $scope.accountForm = false;
                     });
                 }, 0);
             });

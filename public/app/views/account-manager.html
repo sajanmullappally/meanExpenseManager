@@ -1,4 +1,4 @@
-<section class="partial dashboard h100" data-ng-controller="AccountManagerController" layout="column" ng-cloak class="md-inline-form">
+<section class="partial dashboard h100" layout="column" ng-cloak class="md-inline-form">
     <div class="fab-btn primary" data-ng-click="showAccountForm()">
         <i class="ion-plus"></i>
     </div>
@@ -7,7 +7,7 @@
             <h1>Account Manager</h1>
         </div>
     </div>
-    <form class="row" name="AccountForm" novalidate="novalidate" data-ng-submit="addAccount(AccountForm.$valid)" autocomplete="off" data-ng-if="AccountForm">
+    <form class="row" name="AccountForm" novalidate="novalidate" data-ng-submit="addAccount(AccountForm.$valid)" autocomplete="off" data-ng-show="accountForm">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
