@@ -67,7 +67,14 @@ app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$ti
         }
     };
 
-    $scope.deleteExpense = function(id) {
+    // $scope.deleteExpense = function(id) {
+    //     $http.delete('/api/expenses/' + id).success(function (response) {
+    //         refresh();
+    //     });
+    // };
+
+    $scope.deleteExpense = function(id, acc_id, exp_type, exp_old_bal, exp_new_bal) {
+        console.log(id+"-"+acc_id+"-"+exp_type+"-"+exp_old_bal+"-"+exp_new_bal);
         $http.delete('/api/expenses/' + id).success(function (response) {
             refresh();
         });
