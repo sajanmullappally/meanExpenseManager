@@ -29,6 +29,7 @@
     "Ionicons": "ionicons#^2.0.1",
     "gsap": "^1.18.2",
     "angular-bootstrap-datetimepicker": "^1.0.1",
-    "moment": "^2.12.0"
+    "moment": "^2.12.0",
+    "angular-date-time-input": "^1.1.0"
   }
 }
