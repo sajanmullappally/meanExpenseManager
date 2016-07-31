@@ -23,7 +23,7 @@ app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$ti
         Expenses.getExpenses().success(function(response) {
             $scope.expenses = response;
             $scope.expense = '';
-            console.log($scope.expenses);
+            // console.log($scope.expenses);
         });
 
     };
@@ -74,8 +74,7 @@ app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$ti
     // };
 
     $scope.deleteExpense = function(id, acc_id, exp_type, exp_old_bal, exp_new_bal) {
-        console.log(id+"-"+acc_id+"-"+exp_type+"-"+exp_old_bal+"-"+exp_new_bal);
-        $http.delete('/api/expenses/' + id).success(function (response) {
+        $http.delete('/api/expenses/' + id + '/' + acc_id + '/' + exp_type + '/' + exp_old_bal + '/' + exp_new_bal).success(function (response) {
             refresh();
         });
     };

@@ -47,8 +47,9 @@ router.route('/expenses')
 });
 
 // Delete Expense
-router.route('/expenses/:id')
+router.route('/expenses/:id/:acc_id/:exp_type/:exp_old_bal/:exp_new_bal')
 .delete(function(req, res) {
+	console.log(req.params);
     Expense.remove({_id: req.params.id}, function(err, expenses) {
         if (err)
             res.send(err);
