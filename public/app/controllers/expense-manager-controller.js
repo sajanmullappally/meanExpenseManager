@@ -14,11 +14,14 @@ app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$ti
     ];
 
 
-
     $scope.expenses = [];
     $scope.expense = {};
 
     function refresh() {
+
+        Accounts.getAccounts().success(function(response) {
+            $scope.accounts = response;
+        });
 
         Expenses.getExpenses().success(function(response) {
             $scope.expenses = response;
@@ -51,10 +54,10 @@ app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$ti
             }
             $http.post('/api/new-expense', $scope.expense).success(function (response) {
                 console.log(response);
-                $scope.expense = '';
-                refresh();
+                // $scope.expense = '';
                 $timeout(function () {
                     $scope.$apply(function () {
+                        refresh();
                         $scope.expenseForm = false;
                     });
                 }, 0);
