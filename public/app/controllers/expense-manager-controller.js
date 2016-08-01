@@ -26,7 +26,6 @@ app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$ti
         Expenses.getExpenses().success(function(response) {
             $scope.expenses = response;
             $scope.expense = '';
-            // console.log($scope.expenses);
         });
 
     };
@@ -54,7 +53,6 @@ app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$ti
             }
             $http.post('/api/new-expense', $scope.expense).success(function (response) {
                 console.log(response);
-                // $scope.expense = '';
                 $timeout(function () {
                     $scope.$apply(function () {
                         refresh();

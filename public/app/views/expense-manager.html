@@ -15,7 +15,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Select Account</label>
-                                <select name="expense_account" class="form-control" data-ng-options="account as account.name for account in accounts track by account._id" data-ng-model="expense.selectedAccount" data-ng-required="true">
+                                <select name="expense_account" class="form-control" data-ng-options="account as account.name for account in accounts" data-ng-model="expense.selectedAccount" data-ng-required="true" data-ng-change="refreshAccounts()">
                                     <option value="">Select</option>
                                 </select>
                                 <div data-ng-messages="ExpenseForm.expense_account.$error" data-ng-if='ExpenseForm.$submitted || ExpenseForm.expense_account.$dirty' class="validation-msg">
