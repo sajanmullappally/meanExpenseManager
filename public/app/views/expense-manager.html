@@ -15,7 +15,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Select Account</label>
-                                <select name="expense_account" class="form-control" data-ng-options="account as account.name for account in accounts" data-ng-model="expense.selectedAccount" data-ng-required="true" data-ng-change="refreshAccounts()">
+                                <select name="expense_account" class="form-control" data-ng-options="account as account.name for account in accounts" data-ng-model="expense.selectedAccount" data-ng-required="true">
                                     <option value="">Select</option>
                                 </select>
                                 <div data-ng-messages="ExpenseForm.expense_account.$error" data-ng-if='ExpenseForm.$submitted || ExpenseForm.expense_account.$dirty' class="validation-msg">
@@ -124,7 +124,7 @@
                                 <td>{{expense.old_balance}}</td>
                                 <td>{{expense.new_balance}}</td>
                                 <td>
-                                    <span class="ion-trash-a del-account-icon" data-ng-click="deleteExpense(expense._id, expense.account._id, expense.type, expense.old_balance, expense.new_balance)"></span>
+                                    <span class="ion-trash-a del-account-icon" data-ng-click="deleteExpense(expense._id, expense.account._id, expense.type, expense.account.balance, expense.amount)"></span>
                                 </td>
                             </tr>
                         </tbody>

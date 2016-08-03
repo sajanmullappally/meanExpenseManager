@@ -74,8 +74,15 @@ app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$ti
     //     });
     // };
 
-    $scope.deleteExpense = function(id, acc_id, exp_type, exp_old_bal, exp_new_bal) {
-        $http.delete('/api/expenses/' + id + '/' + acc_id + '/' + exp_type + '/' + exp_old_bal + '/' + exp_new_bal).success(function (response) {
+    $scope.deleteExpense = function(id, acc_id, exp_type, exp_balance, exp_amount) {
+        if (exp_type==="Debit") {
+            $scope.updated_balance = exp_balance + exp_amount;
+            console.log($scope.updated_balance);
+        } else if (exp_type==="Credit") {
+            $scope.updated_balance = exp_balance - exp_amount;
+            console.log($scope.updated_balance);
+        }
+        $http.delete('/api/expenses/' + id + '/' + acc_id + '/' + $scope.updated_balance).success(function (response) {
             refresh();
         });
     };
