@@ -1,6 +1,6 @@
 var app = angular.module('expenseManager');
 
-app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$timeout', '$location', 'Accounts', 'Expenses', function($document, $scope, $http, $timeout, $location, Accounts, Expenses){
+app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$timeout', '$location', '$uibModal', 'Accounts', 'Expenses', function($document, $scope, $http, $timeout, $location, $uibModal, Accounts, Expenses){
 
     $scope.accounts = [];
 
@@ -77,14 +77,35 @@ app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$ti
     $scope.deleteExpense = function(id, acc_id, exp_type, exp_balance, exp_amount) {
         if (exp_type==="Debit") {
             $scope.updated_balance = exp_balance + exp_amount;
-            console.log($scope.updated_balance);
         } else if (exp_type==="Credit") {
             $scope.updated_balance = exp_balance - exp_amount;
-            console.log($scope.updated_balance);
         }
-        $http.delete('/api/expenses/' + id + '/' + acc_id + '/' + $scope.updated_balance).success(function (response) {
-            refresh();
+        var modalInstance = $uibModal.open({
+            animation: $scope.animationsEnabled,
+            templateUrl: 'accountUpdateModal.html',
+            controller: 'accountUpdateModalController',
+            resolve: {
+                updated_balance: function () {
+                    return $scope.updated_balance;
+                }
+            }
         });
+        // $http.delete('/api/expenses/' + id + '/' + acc_id + '/' + $scope.updated_balance).success(function (response) {
+        //     refresh();
+        // });
     };
 
 }]);
+
+app.controller('accountUpdateModalController', function ($scope, $uibModalInstance, updated_balance) {
+
+  $scope.updated_balance = updated_balance;
+
+  $scope.ok = function () {
+    console.log($scope.updated_balance);
+  };
+
+  $scope.cancel = function () {
+    console.log($scope.updated_balance);
+  };
+});

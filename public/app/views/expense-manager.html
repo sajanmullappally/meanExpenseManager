@@ -95,40 +95,52 @@
     <div class="row" data-ng-if="expenses.length!=0">
         <div class="col-md-12">
             <div class="panel panel-default">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Title</th>
-                                <th>Account</th>
-                                <th>Transaction Type</th>
-                                <th>Amount</th>
-                                <th>Old Balance</th>
-                                <th>New Balance</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr data-ng-repeat="expense in expenses | orderBy:'-_id'">
-                                <td>{{expense.date | date:'dd-MMM-yyyy'}}</td>
-                                <td>{{expense.title}}</td>
-                                <td>{{expense.account.name}}</td>
-                                <td>{{expense.type}}</td>
-                                <td>
-                                    <span ng-switch="expense.type">
-                                        <span ng-switch-when="Credit">+</span>
-                                        <span ng-switch-when="Debit">-</span>
-                                    </span>
-                                    {{expense.amount}}
-                                </td>
-                                <td>{{expense.old_balance}}</td>
-                                <td>{{expense.new_balance}}</td>
-                                <td>
-                                    <span class="ion-trash-a del-account-icon" data-ng-click="deleteExpense(expense._id, expense.account._id, expense.type, expense.account.balance, expense.amount)"></span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Title</th>
+                            <th>Account</th>
+                            <th>Transaction Type</th>
+                            <th>Amount</th>
+                            <th>Old Balance</th>
+                            <th>New Balance</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="expense in expenses | orderBy:'-_id'">
+                            <td>{{expense.date | date:'dd-MMM-yyyy'}}</td>
+                            <td>{{expense.title}}</td>
+                            <td>{{expense.account.name}}</td>
+                            <td>{{expense.type}}</td>
+                            <td>
+                                <span ng-switch="expense.type">
+                                    <span ng-switch-when="Credit">+</span>
+                                    <span ng-switch-when="Debit">-</span>
+                                </span>
+                                {{expense.amount}}
+                            </td>
+                            <td>{{expense.old_balance}}</td>
+                            <td>{{expense.new_balance}}</td>
+                            <td>
+                                <span class="ion-trash-a del-account-icon" data-ng-click="deleteExpense(expense._id, expense.account._id, expense.type, expense.account.balance, expense.amount)"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <script type="text/ng-template" id="accountUpdateModal.html">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Do you want to update account</h3>
+                    </div>
+                    <div class="modal-body">
+                        Modal Body
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="button" ng-click="ok()">Update Account</button>
+                        <button class="btn btn-warning" type="button" ng-click="cancel()">Don't Update Account</button>
+                    </div>
+                </script>
             </div>
         </div>
     </div>
