@@ -43,18 +43,25 @@ router.route('/expenses')
 
         res.json(expenses);
     })
-    .populate('account', 'name')
-    .populate('account', 'balance');
+    .populate('account');
 });
 
 // Delete Expense
 router.route('/expenses/:id/:acc_id/:updated_balance')
 .delete(function(req, res) {
-	console.log(req.params);
 	Account.findOne({ _id: req.params.acc_id }, function (err, account){
 		account.balance = req.params.updated_balance;
 		account.save();
 	});
+    Expense.remove({_id: req.params.id}, function(err, expenses) {
+        if (err)
+            res.send(err);
+        res.json(expenses);
+    });
+});
+
+router.route('/expenses/:id')
+.delete(function(req, res) {
     Expense.remove({_id: req.params.id}, function(err, expenses) {
         if (err)
             res.send(err);

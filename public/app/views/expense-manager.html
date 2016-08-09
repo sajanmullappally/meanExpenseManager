@@ -124,17 +124,17 @@
                             <td>{{expense.old_balance}}</td>
                             <td>{{expense.new_balance}}</td>
                             <td>
-                                <span class="ion-trash-a del-account-icon" data-ng-click="deleteExpense(expense._id, expense.account._id, expense.type, expense.account.balance, expense.amount)"></span>
+                                <span class="ion-trash-a del-account-icon" data-ng-click="deleteExpense(expense)"></span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <script type="text/ng-template" id="accountUpdateModal.html">
                     <div class="modal-header">
-                        <h3 class="modal-title">Do you want to update account</h3>
+                        <h4 class="modal-title">Do you want to update account {{account_title}}</h4>
                     </div>
                     <div class="modal-body">
-                        Modal Body
+                        <!-- New Account Balance: {{updated_balance}} -->
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary" type="button" ng-click="ok()">Update Account</button>
