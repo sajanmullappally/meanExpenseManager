@@ -6,6 +6,12 @@ var app = express();
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
+var passport = require('passport');
+var flash    = require('connect-flash');
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
+
 // database connection =======================================================
 
 var db = require('./app/config/db');
@@ -25,6 +31,15 @@ app.use(methodOverride(function(req, res){
 		return method
 	}
 }));
+
+app.use(morgan('dev'));
+app.use(cookieParser());
+
+// required for passport =====================================================
+app.use(session({ secret: 'expensemanagermongodbexpressangularjsnodejs' }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 // set root ==================================================================
 

@@ -134,11 +134,12 @@
                         <h4 class="modal-title">Do you want to update account {{account_title}}</h4>
                     </div>
                     <div class="modal-body">
-                        <!-- New Account Balance: {{updated_balance}} -->
+                        <p>Account Balance with updation: {{updated_balance}}</p>
+                        <p>Account Balance without updation: {{account_balance}}</p>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer text-left">
                         <button class="btn btn-primary" type="button" ng-click="ok()">Update Account</button>
-                        <button class="btn btn-warning" type="button" ng-click="cancel()">Don't Update Account</button>
+                        <button class="btn btn-primary" type="button" ng-click="cancel()">Don't Update Account</button>
                     </div>
                 </script>
             </div>

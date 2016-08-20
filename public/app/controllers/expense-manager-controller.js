@@ -104,33 +104,32 @@ app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$ti
 
 app.controller('accountUpdateModalController', function ($scope, $http, $uibModalInstance, updated_balance, expense, Accounts, Expenses) {
 
-  $scope.updated_balance = updated_balance;
-  $scope.account_title = expense.account.name;
+    $scope.account_balance = expense.account.balance;
+    $scope.updated_balance = updated_balance;
+    $scope.account_title = expense.account.name;
 
-  function refresh() {
+    function refresh() {
+        Accounts.getAccounts().success(function(response) {
+            $scope.accounts = response;
+        });
 
-    Accounts.getAccounts().success(function(response) {
-        $scope.accounts = response;
-    });
+        Expenses.getExpenses().success(function(response) {
+            $scope.expenses = response;
+            $scope.expense = '';
+        });
+    };
 
-    Expenses.getExpenses().success(function(response) {
-        $scope.expenses = response;
-        $scope.expense = '';
-    });
+    $scope.ok = function () {
+        $http.delete('/api/expenses/' + expense._id + '/' + expense.account._id + '/' + $scope.updated_balance).success(function (response) {
+            refresh();
+            $uibModalInstance.close($scope.updated_balance);
+        });
+    };
 
-};
-
-  $scope.ok = function () {
-    $http.delete('/api/expenses/' + expense._id + '/' + expense.account._id + '/' + $scope.updated_balance).success(function (response) {
-        refresh();
-        $uibModalInstance.close($scope.updated_balance);
-    });
-  };
-
-  $scope.cancel = function () {
-    $http.delete('/api/expenses/' + expense._id).success(function (response) {
-        refresh();
-        $uibModalInstance.close($scope.updated_balance);
-    });
-  };
+    $scope.cancel = function () {
+        $http.delete('/api/expenses/' + expense._id).success(function (response) {
+            refresh();
+            $uibModalInstance.close($scope.updated_balance);
+        });
+    };
 });

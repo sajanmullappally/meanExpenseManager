@@ -242,6 +242,31 @@ span[class^="ion-"] {
 	}
 }
 
+.modal-backdrop {
+	background-color: white;
+}
+
+.modal-content {
+	@include border-radius(0);
+	border: none;
+	background-color: $nav-active-color;
+	color: white;
+	@include box-shadow(0 3px 5px rgba(0,0,0,0.5) !important);
+	.modal-header {
+		border-bottom: solid 1px $nav-hover-bg;
+	}
+	.modal-footer {
+		border-top: solid 1px $nav-hover-bg;
+		&.text-left {
+			text-align: left;
+		}
+		.btn-primary {
+			background-color: $nav-hover-bg;
+			border: none;
+		}
+	}
+}
+
 .class {
 	background-color: white;
 }
