@@ -4,7 +4,7 @@
             <h1>Login</h1>
         </div>
     </div>
-    <form class="row" name="LoginForm" data-ng-submit="userLogin()">
+    <form class="row" name="LoginForm" action="/userLogin" method="post">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -12,13 +12,13 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>User Name/Email</label>
-                                <input name="email" class="form-control" data-ng-model="user.email">
+                                <input type="text" name="email" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" class="form-control" data-ng-model="user.password">
+                                <input type="password" name="password" class="form-control">
                             </div>
                         </div>
                     </div>

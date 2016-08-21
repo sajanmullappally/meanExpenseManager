@@ -48,9 +48,12 @@ app.use(express.static('public'));
 // Express Routing ===========================================================
 
 var accountRoute = require('./app/routes/account-routes.js');
-var expenseRoute = require('./app/routes/expense-routes.js')
+var expenseRoute = require('./app/routes/expense-routes.js');
 app.use('/api', accountRoute);
 app.use('/api', expenseRoute);
+
+require('./app/routes/passport-routes.js')(app, passport);
+require('./app/config/passport.js')(passport);
 
 // start app =================================================================
 

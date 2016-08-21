@@ -4,27 +4,21 @@
             <h1>Signup</h1>
         </div>
     </div>
-    <form class="row" name="SignupForm" data-ng-submit="userSignup()">
+    <form class="row" name="SignupForm" action="/userSignup" method="post">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>User Name</label>
-                                <input name="email" class="form-control" data-ng-model="user.username">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
                                 <label>Email</label>
-                                <input name="email" class="form-control" data-ng-model="user.email">
+                                <input type="text" name="email" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" class="form-control" data-ng-model="user.password">
+                                <input type="text" name="password" class="form-control">
                             </div>
                         </div>
                     </div>

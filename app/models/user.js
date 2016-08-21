@@ -4,10 +4,15 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema ({
 	local: {
-		username: String,
 		email: String,
 		password: String
-	}
+	},
+	google: {
+        id: String,
+        token: String,
+        email: String,
+        name: String
+    }
 });
 
 // generating a hash
@@ -20,4 +25,4 @@ userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
 
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('User', userSchema);
