@@ -42,8 +42,6 @@ app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$ti
         $scope.expenseForm = false;
     };
 
-    // $scope.expense.date = new Date();
-
     $scope.addExpense = function (isValid) {
         if (isValid) {
             if ($scope.expense.selectedExpenseType.name==="Debit") {
@@ -59,7 +57,6 @@ app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$ti
                         $scope.expenseForm = false;
                     });
                 }, 0);
-                // $scope.AccountForm.$setPristine(true);
             });
         } else {
             $timeout(function () {
@@ -67,14 +64,6 @@ app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$ti
             }, 0);
         }
     };
-
-    // $scope.deleteExpense = function(id) {
-    //     $http.delete('/api/expenses/' + id).success(function (response) {
-    //         refresh();
-    //     });
-    // };
-    // id, acc_id, exp_type, exp_balance, exp_amount
-    // expense._id, expense.account._id, expense.type, expense.account.balance, expense.amount
 
     $scope.deleteExpense = function(expense) {
         if (expense.type==="Debit") {
@@ -95,9 +84,6 @@ app.controller('ExpenseManagerController', ['$document', '$scope', '$http', '$ti
                 }
             }
         });
-        // $http.delete('/api/expenses/' + id + '/' + acc_id + '/' + $scope.updated_balance).success(function (response) {
-        //     refresh();
-        // });
     };
 
 }]);

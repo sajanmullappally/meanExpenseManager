@@ -13,7 +13,7 @@
 	<div class="page" data-ng-app="expenseManager">
 		<div class="sidebar split split-horizontal" data-ng-controller="SidebarController">
 			<ul class="nav nav-pills nav-stacked">
-				<li role="presentation" data-ng-class="{ active: isActive('/')}"><a href="#/">Dashboard</a></li>
+				<li role="presentation" data-ng-class="{ active: isActive('/Dashboard')}"><a href="#/Dashboard">Dashboard</a></li>
 				<li role="presentation" data-ng-class="{ active: isActive('/AccountManager')}"><a href="#/AccountManager">Account Manager</a></li>
 				<li role="presentation" data-ng-class="{ active: isActive('/ExpenseManager')}"><a href="#/ExpenseManager">Expense Manager</a></li>
 			</ul>
@@ -45,6 +45,8 @@
 	<script src="app/controllers/account-manager-controller.js"></script>
 	<script src="app/services/account-manager-service.js"></script>
 	<script src="app/controllers/expense-manager-controller.js"></script>
+	<script src="app/controllers/login-controller.js"></script>
+	<script src="app/controllers/signup-controller.js"></script>
 	<!-- Angular App -->
 </body>
 </html>

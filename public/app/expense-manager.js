@@ -2,18 +2,30 @@ var app = angular.module('expenseManager', ['ngRoute', 'ngMessages', 'ui.bootstr
 
 app.config(function($routeProvider) {
 	$routeProvider
-		.when('/', {
-			templateUrl : 'app/views/dashboard.html',
-			controller  : 'DashboardController'
-		}).
-		when('/AccountManager', {
-			templateUrl : 'app/views/account-manager.html',
-			controller  : 'AccountManagerController'
-		})
-		.when('/ExpenseManager', {
-			templateUrl : 'app/views/expense-manager.html',
-			controller  : 'ExpenseManagerController'
-		});
+	.when('/Dashboard', {
+		templateUrl : 'app/views/dashboard.html',
+		controller  : 'DashboardController'
+	})
+	.when('/', {
+		templateUrl : 'app/views/login.html',
+		controller  : 'LoginController'
+	})
+	.when('/Login', {
+		templateUrl : 'app/views/login.html',
+		controller  : 'LoginController'
+	})
+	.when('/Signup', {
+		templateUrl : 'app/views/signup.html',
+		controller  : 'SignupController'
+	})
+	.when('/AccountManager', {
+		templateUrl : 'app/views/account-manager.html',
+		controller  : 'AccountManagerController'
+	})
+	.when('/ExpenseManager', {
+		templateUrl : 'app/views/expense-manager.html',
+		controller  : 'ExpenseManagerController'
+	});
 });
 
 // Active Menu State in Bootstrap Sidebar
